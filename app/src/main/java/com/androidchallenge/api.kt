@@ -14,31 +14,13 @@ interface BackendService {
     suspend fun getExercises(): List<Exercise>
 }
 
-fun buildHttpClient() = OkHttpClient.Builder()
-    .addInterceptor { chain ->
-        runBlocking {
-            try {
-                val accessToken = ""
-                val newRequest = chain
-                    .request()
-                    .newBuilder()
-                    .header("Authorization", "Bearer $accessToken")
-                    .build()
-                chain.proceed(newRequest)
-            } catch (ex: Exception) {
-                chain.proceed(chain.request())
-            }
-        }
-    }
-    .build()
-
 val API_JSON = Json {
     ignoreUnknownKeys = true
 }
 
 val api: BackendService = Retrofit.Builder()
     .baseUrl("https://api.vitruvian.me/v1/")
-    .client(buildHttpClient())
+    .client(OkHttpClient.Builder().build())
     .addConverterFactory(API_JSON.asConverterFactory("application/json".toMediaType()))
     .build()
     .create(BackendService::class.java)
