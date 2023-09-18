@@ -1,8 +1,7 @@
 package com.androidchallenge.data
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.time.Duration
-import java.time.Instant
 
 @Serializable
 data class ExerciseVideo(
@@ -12,23 +11,61 @@ data class ExerciseVideo(
 )
 
 @Serializable
-data class Equipment(
-    val id: String?,
-    val name: String?,
-)
+enum class EquipmentEnum {
+    HANDLES,
+    BAR,
+    SHORT_BAR,
+    STRAPS,
+    BELT,
+    ROPE,
+    BENCH,
+    BLACK_CABLES,
+    GREY_CABLES,
+    FORM_TRAINER;
+}
 
 @Serializable
-data class MuscleGroup(
-    val id: String?,
-    val name: String?,
-)
+enum class MuscleEnum {
+    @SerialName("biceps")
+    BICEPS,
+    @SerialName("forearms")
+    FOREARMS,
+    @SerialName("triceps")
+    TRICEPS,
+    @SerialName("lats")
+    LATS,
+    @SerialName("lower_back")
+    LOWER_BACK,
+    @SerialName("traps")
+    TRAPS,
+    @SerialName("upper_back")
+    UPPER_BACK,
+    @SerialName("abductors")
+    ABDUCTORS,
+    @SerialName("calves")
+    CALVES,
+    @SerialName("glutes")
+    GLUTES,
+    @SerialName("hamstrings")
+    HAMSTRINGS,
+    @SerialName("quads")
+    QUADS,
+    @SerialName("chest")
+    CHEST,
+    @SerialName("core")
+    CORE,
+    @SerialName("obliques")
+    OBLIQUES,
+    @SerialName("shoulders")
+    SHOULDERS
+}
 
 @Serializable
 data class Exercise(
     val id: String,
     val name: String? = null,
     val videos: List<ExerciseVideo>? = null,
-    val equipment: List<Equipment>? = null,
-    val muscleGroups: List<MuscleGroup>? = null,
+    val equipment: List<EquipmentEnum>? = null,
+    val muscles: List<MuscleEnum>? = null,
 )
 
