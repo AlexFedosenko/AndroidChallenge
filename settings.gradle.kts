@@ -1,2 +1,2 @@
 rootProject.name = "AndroidChallenge"
-include ':app'
+include(":app")
