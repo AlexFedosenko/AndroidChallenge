@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
 
@@ -51,6 +52,10 @@ dependencies {
     implementation(libs.retrofit.library)
     implementation(libs.retrofit.kotlinxSerialization.converter)
     implementation(libs.okhttp)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 
     testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.test.junit)
