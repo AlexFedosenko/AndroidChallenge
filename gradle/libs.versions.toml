@@ -2,7 +2,7 @@
 kotlin = "1.9.10"
 composeCompiler = "1.5.3"
 kotlin_coroutines_version = "1.7.3"
-dagger_version = "2.x"
+dagger_version = "2.46"
 
 [libraries]
 androidx-core = "androidx.core:core-ktx:1.12.0"
@@ -26,8 +26,8 @@ material = "com.google.android.material:material:1.9.0"
 junit4 = "junit:junit:4.13.2"
 agp = "com.android.tools.build:gradle:8.1.1"
 
-kotlinx-coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
-kotlinx-coroutines-android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin_coroutines_version" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin_coroutines_version" }
 
-dagger = "com.google.dagger:dagger:$dagger_version"
-dagger-compiler = "com.google.dagger:dagger-compiler:$dagger_version"
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger_version" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger_version" }
