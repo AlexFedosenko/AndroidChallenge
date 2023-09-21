@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.androidchallenge.di.AppComponent
 import com.androidchallenge.ui.theme.AndroidChallengeTheme
+import com.androidchallenge.ui.widgets.MainWidget
 import com.androidchallenge.viewmodel.MainViewModel
 
 class MainActivity : ComponentActivity() {
@@ -18,10 +19,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AndroidChallengeTheme {
-                // Start here
+                MainWidget(exercisesLiveDate = viewModel.exercisesLiveData)
             }
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.fetchExercises()
+    }
 }
 fun MainActivity.getAppComponent(): AppComponent = (application as AndroidChallengeApp).appComponent

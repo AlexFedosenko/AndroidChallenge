@@ -1,5 +1,6 @@
 package com.androidchallenge.data
 
+import com.androidchallenge.utils.toRootLowerCase
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -22,6 +23,8 @@ enum class EquipmentEnum {
     BLACK_CABLES,
     GREY_CABLES,
     FORM_TRAINER;
+
+    fun getReadableName() = name.toRootLowerCase().replace("_", " ")
 }
 
 @Serializable
@@ -57,7 +60,9 @@ enum class MuscleEnum {
     @SerialName("obliques")
     OBLIQUES,
     @SerialName("shoulders")
-    SHOULDERS
+    SHOULDERS;
+
+    fun getReadableName() = name.toRootLowerCase().replace("_", " ")
 }
 
 @Serializable

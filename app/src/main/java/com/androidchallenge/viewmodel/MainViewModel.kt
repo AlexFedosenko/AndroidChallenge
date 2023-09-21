@@ -1,6 +1,8 @@
 package com.androidchallenge.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.androidchallenge.models.ExerciseListState
+import com.androidchallenge.models.mapToState
 import com.androidchallenge.repository.MainRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -12,10 +14,16 @@ class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository
 ) : ViewModel(), CoroutineScope {
 
-    fun getExercises() {
+    private val exercisesStateHolder = StateHolder(createExercisesState())
+    val exercisesLiveData = exercisesStateHolder.liveData()
+
+    fun fetchExercises() {
         launch {
-            println(mainRepository.getExerciseList())
+            exercisesStateHolder.set(ExerciseListState(exerciseList = mainRepository.getExerciseList().map { it.mapToState() }))
         }
     }
 
+    private fun createExercisesState() = ExerciseListState(
+        exerciseList = emptyList()
+    )
 }
